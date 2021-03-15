@@ -1,0 +1,95 @@
+bl_mcu_sdk概览
+===============================
+
+1 Overview
+>>>>>>>>>>>>>>>>>>>>>>
+
+- bl_mcu_sdk是Boufflao Lab 针对mcu开发提供的综合软件开发包，他提供了所有bl系列mcu底层驱动包以及兼容的hal层，并且包含了在hal层的基础上开发的丰富案例。
+    
+- bl_mcu_sdk是通过cmake构建的软件工程,包含了丰富的开发工具链，支持在windows/Linux环境的编译调试与开发。
+
+2 工程结构
+>>>>>>>>>>>>>>>>>>>>>>>
+
+::
+
+    bl_mcu_sdk 
+    ├── bsp
+    |   ├── board
+    |   ├── bsp_common
+    ├── common
+    │   ├── device
+    │   ├── libc
+    │   ├── list
+    │   ├── memheap
+    │   ├── misc
+    │   ├── ring_buffer
+    │   └── soft_crc
+    ├── components
+    │   ├── fatfs
+    │   ├── freertos
+    │   ├── shell
+    │   └── usb_stack
+    ├── docs
+    │   ├── bl_mcu_sdk_development_guide
+    │   ├── blxxx_docs
+    │   ├── blxxx_Transplant_Guide
+    ├── drivers 
+    │   ├── bl602_driver
+    │   └── bl702_driver
+    ├── examples
+    │   ├── adc
+    │   ├── dac
+    │   ├── dhrystone
+    │   ├── dma
+    │   ├── gpio
+    │   ├── hellowd
+    │   ├── i2c
+    │   ├── memheap
+    │   ├── psram
+    │   ├── pwm
+    │   ├── spi
+    │   ├── spi_sd
+    │   ├── timer
+    │   ├── uart
+    │   └── usb
+    │   └── ...
+    └── tools
+
+
+
+
+- bsp
+  存放板级相关的引脚定义，外设配置的板级支持包 
+- common
+  存放设备驱动、libc、链表、内存管理等与外设无关的软件包
+- components
+  存放第三方相关组件，比如 freertos、fatfs、usb 协议栈等软件包
+- drivers
+  存放不同芯片的底层驱动库
+- examples
+  存放用户示例代码
+- docs
+  存放bl_mcu_sdk相关更多文档
+- tools
+  存放图形化界面、命令行，编译烧写所需要的软件支持包
+
+3 开发环境所需的软件支持包
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+**:For Windows With GUI:**
+    - Eclipse Environment For Bouffalo Lab
+    - bl_mcu_sdk
+
+**:For Windows/Linux With Command:**
+    - **cmake** with version higher than 3.10, recommended use 3.19.
+    - **riscv64-unknown-elf-gcc** toolchain, and set it into system path.
+    - **bouffalo_development_environment** for flash download, download it form here_.
+    - bl_mcu_sdk
+
+.. _here:https://dev.bouffalolab.com/download
+
+4 开发环境所需要的硬件支持
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+- 任意由Boufflao Lab提供的开发板
+- JLINK V10以上的仿真调试器

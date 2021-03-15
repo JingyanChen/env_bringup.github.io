@@ -1,0 +1,153 @@
+bl_mcu_sdk开发环境搭建
+=====================================
+
+1 在Windos环境下使用Eclipse进行编译烧写
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.1 所需软件清单
+-------------------------------------------------
+- **带有risc-v编译器等工具的特定eclipse版本软件包** 用户可以从客户支持中心获取软件支持，或者从官网下载。
+- **bl_mcu_sdk** 用户可以从开源社区获得源码
+
+1.2 Eclipse环境搭建步骤
+-------------------------------------------------
+1. 解压缩获取到的eclipse压缩包，获得免安装的eclipse文件夹目录
+
+2. 双击 eclipse.exe 运行，选择配置对应的workspace，点击Launch开始运行
+
+    |pic1|
+.. |pic1| image:: https://s3.ax1x.com/2021/02/25/yv2aLj.png
+
+3. 选择 window->preferences 打开环境配置相关配置页面
+
+    |pic2|
+.. |pic2| image:: https://s3.ax1x.com/2021/03/09/68Swz4.md.png
+
+4. 点击下图标注1的图标，打开导入配置界面，选择eclipse目录下的bflb_mcu_preferences.epf
+   配置文件。
+
+    |pic3|
+.. |pic3| image:: https://s3.ax1x.com/2021/02/25/yv2Xmd.png
+5. 路径选择好之后，点击 ``Finish`` 之后，在弹出的对话框选中
+   ``cancel`` ，不用重新启动。
+
+    |pic4|
+.. |pic4| image:: https://s3.ax1x.com/2021/02/25/yvRE0s.png
+6. 点击 菜单栏 File->Import,打开导入配置界面。
+
+    |pic5|
+.. |pic5| image:: https://s3.ax1x.com/2021/02/26/yzdJte.png
+7. 在打开的 Import 窗口中选择**General->Existing Projects into Workspace** ，然后点击 **Next**
+
+    |pic6|
+.. |pic6| image:: https://s3.ax1x.com/2021/02/26/yzdsAS.png
+8. 加载bl_mcu_sdk的工程路径后，点击Finsh完成导入
+
+    |pic7|
+.. |pic7| image:: https://s3.ax1x.com/2021/02/26/yzwu4g.png
+9. 导入完成后，关闭 ``Welcome`` 窗口即可看到导入的工程
+
+    |pic8|
+.. |pic8| image:: https://s3.ax1x.com/2021/02/26/yzwU5F.png
+
+
+1.3 使用Eclipse提供的Target按钮实现编译与烧写
+-----------------------------------------------------
+当bl_mcu_sdk成功被导入Eclipse，界面的左侧会出现Build
+Targets相关的多个按钮，用户可以双击这些按钮实现编译烧写的功能，如下图所示
+
+    |pic9|
+.. |pic9| image:: https://s3.ax1x.com/2021/03/09/63U7p6.png
+-  **bl_clean** 指令用作清除编译所带来的中间文件
+-  **bl_make**
+   编译特定的目标工程，用户可以通过右击此按钮，点击`Edit` 更换目标工程，以及Board配置。详细见
+   **编译烧写不同的目标工程**
+-  **download** 下载目标工程
+
+当用户双击了 **bl_make** 按钮，会触发编译事件，编译成功后Console界面会出现如下图所示提示。
+
+    |pic10|
+.. |pic10| image:: https://s3.ax1x.com/2021/03/10/6G8hkt.md.png
+
+当用户双击了 **bl_download** 按钮，会触发下载事件，下载成功后Console界面会出现如下图所示提示。
+
+    |pic11|
+.. |pic11| image:: https://s3.ax1x.com/2021/03/10/6GGQnH.md.png
+
+Note:编译烧写的报文会展现在Console窗口，如果遇到烧写错误的情况，请按照报文提示查找问题，或者联系博流开源社区寻找技术支持。
+
+1.4 编译烧写不同的目标工程
+---------------------------------------------------------
+当右击bl_make按钮，点击 Edit 后，会弹出更换目标工程的配置界面，如下图所示
+
+    |pic12|
+.. |pic12| image:: https://s3.ax1x.com/2021/03/09/63weS0.png
+   
+我们将不同的示例代码做了分类，ADC相关的会存放在Examples/ADC目录下，DAC相关的存放在Examples/DAC下，以此类推。APP参数就是指定了示例代码类型，用户可以在Examples下查看支持哪些类型。默认选定为hellowd类型。
+当选定完不同的类型后，SAPP选定了特定类型下的具体例子，具体到包含main函数的.c文件名。
+download按钮会自动识别烧写SAPP指定的bin文件。
+Build command中 ``make BOARD= ... 会指定不同的Board类型以指定适配不同类型的开发板。Board类型决定了一些外设的IO与时钟的缺省值。默认选择的是BL702的EVB开发板make BOARD=BL702_EVB
+
+
+2 在Ubuntu环境下使用命令行进行编译烧写
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.1 所需软件清单
+-------------------------------------------------
+- **cmake** with version higher than 3.19, recommended use 3.19.
+- **riscv64-unknown-elf-gcc** toolchain, and set it into system path.
+- **bouffalo_development_environment** for flash download, download it form here_.
+- bl_mcu_sdk
+
+2.2 命令行编环境译烧写步骤
+--------------------------------------------------
+
+1. 添加cmake与riscv64-unknown-elf-gcc的路径到Unbuntu的环境变量
+
+2. 使用Unbunt切换到bl_mcu_sdk文件夹目录
+
+3. 输入指令 make build APP=hellowd SAPP=helloworld 完成编译过程，生成的目标文件放在out目录下
+
+4. 使用dev_cube烧录，更多信息可以点击 DevCube用户手册v1.2_
+
+.. _DevCube用户手册v1.2:https://dev.bouffalolab.com/media/upload/doc/DevCube%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8Cv1.2.pdf
+
+3 在Windows环境下使用JLINK实现完成带图形界面的调试
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+3.1 调试所需要的硬件支持
+------------------------------
+- JLINK11以上的调试器
+- blxxx 开发板
+  
+3.2 硬件连接方法
+------------------------------
+::
+
+    blxxx开发板        JLINK
+    JTAG_TDI   <-->   TDI
+    JTAG_TDO   <-->   TDO 
+    JTAG_TCK   <-->   TCK 
+    JTAG_TMS   <-->   TMS
+    VDD33      <-->   VTarget
+    GND        <-->   GND 
+
+3.3 使用Jlink进行硬件仿真步骤
+------------------------------
+
+1 下载最新的Jlink驱动，推荐下载V6.98以上的版本
+
+2 打开Eclipses页面，点击Debug图标的向下箭头按钮后，点击Debug Configurations选项，弹出debug配置界面。如下图所示
+
+    |pic13|
+.. |pic13| image:: https://s3.ax1x.com/2021/03/09/63rqPJ.png
+
+3 在界面左侧，选择GDB SEGGER J-Link Debugging下的Jlink_bl_mcu_sdk选项卡
+在Main界面下，通过Browse选择需要debug的elf文件。
+如下图所示
+
+    |pic99|
+.. |pic99| image:: https://s3.ax1x.com/2021/03/15/6rpBkV.md.png
+
+4 配置完成后点击Apply然后点击Debug选项开始仿真，代码会全速运行直到运行到main函数首地址，出现如下图所示的页面，用户可以通过单步调试指令进行硬件仿真
+
+    |pic20|
+.. |pic20| image:: https://s3.ax1x.com/2021/03/15/6Dy3TS.md.png

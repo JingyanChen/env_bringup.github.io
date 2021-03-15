@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="Chinese" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="Chinese" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>bl_mcu_sdk开发环境搭建 &mdash; bl_mcu_sdk_development_guide 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="bl_mcu_sdk概览" href="bl_mcu_sdk_overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> bl_mcu_sdk_development_guide
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="bl_mcu_sdk_overview.html">bl_mcu_sdk概览</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">bl_mcu_sdk开发环境搭建</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#windoseclipse">1 在Windos环境下使用Eclipse进行编译烧写</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">1.1 所需软件清单</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eclipse">1.2 Eclipse环境搭建步骤</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eclipsetarget">1.3 使用Eclipse提供的Target按钮实现编译与烧写</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1.4 编译烧写不同的目标工程</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ubuntu">2 在Ubuntu环境下使用命令行进行编译烧写</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">2.1 所需软件清单</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">2.2 命令行编环境译烧写步骤</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#windowsjlink">3 在Windows环境下使用JLINK实现完成带图形界面的调试</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">3.1 调试所需要的硬件支持</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">3.2 硬件连接方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jlink">3.3 使用Jlink进行硬件仿真步骤</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">bl_mcu_sdk_development_guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>bl_mcu_sdk开发环境搭建</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dev_env_bringup.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="bl-mcu-sdk">
+<h1>bl_mcu_sdk开发环境搭建<a class="headerlink" href="#bl-mcu-sdk" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="windoseclipse">
+<h2>1 在Windos环境下使用Eclipse进行编译烧写<a class="headerlink" href="#windoseclipse" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>1.1 所需软件清单<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>带有risc-v编译器等工具的特定eclipse版本软件包</strong> 用户可以从客户支持中心获取软件支持，或者从官网下载。</p></li>
+<li><p><strong>bl_mcu_sdk</strong> 用户可以从开源社区获得源码</p></li>
+</ul>
+</div>
+<div class="section" id="eclipse">
+<h3>1.2 Eclipse环境搭建步骤<a class="headerlink" href="#eclipse" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>解压缩获取到的eclipse压缩包，获得免安装的eclipse文件夹目录</p></li>
+<li><p>双击 eclipse.exe 运行，选择配置对应的workspace，点击Launch开始运行</p>
+<blockquote>
+<div><p><img alt="pic1" src="https://s3.ax1x.com/2021/02/25/yv2aLj.png" /></p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic" start="3">
+<li><p>选择 window-&gt;preferences 打开环境配置相关配置页面</p>
+<blockquote>
+<div><p><img alt="pic2" src="https://s3.ax1x.com/2021/03/09/68Swz4.md.png" /></p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic" start="4">
+<li><p>点击下图标注1的图标，打开导入配置界面，选择eclipse目录下的bflb_mcu_preferences.epf
+配置文件。</p>
+<blockquote>
+<div><p><img alt="pic3" src="https://s3.ax1x.com/2021/02/25/yv2Xmd.png" /></p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic" start="5">
+<li><p>路径选择好之后，点击 <code class="docutils literal notranslate"><span class="pre">Finish</span></code> 之后，在弹出的对话框选中
+<code class="docutils literal notranslate"><span class="pre">cancel</span></code> ，不用重新启动。</p>
+<blockquote>
+<div><p><img alt="pic4" src="https://s3.ax1x.com/2021/02/25/yvRE0s.png" /></p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic" start="6">
+<li><p>点击 菜单栏 File-&gt;Import,打开导入配置界面。</p>
+<blockquote>
+<div><p><img alt="pic5" src="https://s3.ax1x.com/2021/02/26/yzdJte.png" /></p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic" start="7">
+<li><p>在打开的 Import 窗口中选择**General-&gt;Existing Projects into Workspace** ，然后点击 <strong>Next</strong></p>
+<blockquote>
+<div><p><img alt="pic6" src="https://s3.ax1x.com/2021/02/26/yzdsAS.png" /></p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic" start="8">
+<li><p>加载bl_mcu_sdk的工程路径后，点击Finsh完成导入</p>
+<blockquote>
+<div><p><img alt="pic7" src="https://s3.ax1x.com/2021/02/26/yzwu4g.png" /></p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic" start="9">
+<li><p>导入完成后，关闭 <code class="docutils literal notranslate"><span class="pre">Welcome</span></code> 窗口即可看到导入的工程</p>
+<blockquote>
+<div><p><img alt="pic8" src="https://s3.ax1x.com/2021/02/26/yzwU5F.png" /></p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="eclipsetarget">
+<h3>1.3 使用Eclipse提供的Target按钮实现编译与烧写<a class="headerlink" href="#eclipsetarget" title="Permalink to this headline">¶</a></h3>
+<p>当bl_mcu_sdk成功被导入Eclipse，界面的左侧会出现Build
+Targets相关的多个按钮，用户可以双击这些按钮实现编译烧写的功能，如下图所示</p>
+<blockquote>
+<div><p><img alt="pic9" src="https://s3.ax1x.com/2021/03/09/63U7p6.png" /></p>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>bl_clean</strong> 指令用作清除编译所带来的中间文件</p></li>
+<li><p><strong>bl_make</strong>
+编译特定的目标工程，用户可以通过右击此按钮，点击`Edit` 更换目标工程，以及Board配置。详细见
+<strong>编译烧写不同的目标工程</strong></p></li>
+<li><p><strong>download</strong> 下载目标工程</p></li>
+</ul>
+<p>当用户双击了 <strong>bl_make</strong> 按钮，会触发编译事件，编译成功后Console界面会出现如下图所示提示。</p>
+<blockquote>
+<div><p><img alt="pic10" src="https://s3.ax1x.com/2021/03/10/6G8hkt.md.png" /></p>
+</div></blockquote>
+<p>当用户双击了 <strong>bl_download</strong> 按钮，会触发下载事件，下载成功后Console界面会出现如下图所示提示。</p>
+<blockquote>
+<div><p><img alt="pic11" src="https://s3.ax1x.com/2021/03/10/6GGQnH.md.png" /></p>
+</div></blockquote>
+<p>Note:编译烧写的报文会展现在Console窗口，如果遇到烧写错误的情况，请按照报文提示查找问题，或者联系博流开源社区寻找技术支持。</p>
+</div>
+<div class="section" id="id2">
+<h3>1.4 编译烧写不同的目标工程<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>当右击bl_make按钮，点击 Edit 后，会弹出更换目标工程的配置界面，如下图所示</p>
+<blockquote>
+<div><p><img alt="pic12" src="https://s3.ax1x.com/2021/03/09/63weS0.png" /></p>
+</div></blockquote>
+<p>我们将不同的示例代码做了分类，ADC相关的会存放在Examples/ADC目录下，DAC相关的存放在Examples/DAC下，以此类推。APP参数就是指定了示例代码类型，用户可以在Examples下查看支持哪些类型。默认选定为hellowd类型。
+当选定完不同的类型后，SAPP选定了特定类型下的具体例子，具体到包含main函数的.c文件名。
+download按钮会自动识别烧写SAPP指定的bin文件。
+Build command中 <a href="#id3"><span class="problematic" id="id4">``</span></a>make BOARD= ... 会指定不同的Board类型以指定适配不同类型的开发板。Board类型决定了一些外设的IO与时钟的缺省值。默认选择的是BL702的EVB开发板make BOARD=BL702_EVB</p>
+</div>
+</div>
+<div class="section" id="ubuntu">
+<h2>2 在Ubuntu环境下使用命令行进行编译烧写<a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h3>2.1 所需软件清单<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>cmake</strong> with version higher than 3.19, recommended use 3.19.</p></li>
+<li><p><strong>riscv64-unknown-elf-gcc</strong> toolchain, and set it into system path.</p></li>
+<li><p><strong>bouffalo_development_environment</strong> for flash download, download it form <a href="#id9"><span class="problematic" id="id10">here_</span></a>.</p></li>
+<li><p>bl_mcu_sdk</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h3>2.2 命令行编环境译烧写步骤<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>添加cmake与riscv64-unknown-elf-gcc的路径到Unbuntu的环境变量</p></li>
+<li><p>使用Unbunt切换到bl_mcu_sdk文件夹目录</p></li>
+<li><p>输入指令 make build APP=hellowd SAPP=helloworld 完成编译过程，生成的目标文件放在out目录下</p></li>
+<li><p>使用dev_cube烧录，更多信息可以点击 <a href="#id11"><span class="problematic" id="id12">DevCube用户手册v1.2_</span></a></p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="windowsjlink">
+<h2>3 在Windows环境下使用JLINK实现完成带图形界面的调试<a class="headerlink" href="#windowsjlink" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h3>3.1 调试所需要的硬件支持<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>JLINK11以上的调试器</p></li>
+<li><p>blxxx 开发板</p></li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h3>3.2 硬件连接方法<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">blxxx开发板</span>        <span class="n">JLINK</span>
+<span class="n">JTAG_TDI</span>   <span class="o">&lt;--&gt;</span>   <span class="n">TDI</span>
+<span class="n">JTAG_TDO</span>   <span class="o">&lt;--&gt;</span>   <span class="n">TDO</span>
+<span class="n">JTAG_TCK</span>   <span class="o">&lt;--&gt;</span>   <span class="n">TCK</span>
+<span class="n">JTAG_TMS</span>   <span class="o">&lt;--&gt;</span>   <span class="n">TMS</span>
+<span class="n">VDD33</span>      <span class="o">&lt;--&gt;</span>   <span class="n">VTarget</span>
+<span class="n">GND</span>        <span class="o">&lt;--&gt;</span>   <span class="n">GND</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="jlink">
+<h3>3.3 使用Jlink进行硬件仿真步骤<a class="headerlink" href="#jlink" title="Permalink to this headline">¶</a></h3>
+<p>1 下载最新的Jlink驱动，推荐下载V6.98以上的版本</p>
+<p>2 打开Eclipses页面，点击Debug图标的向下箭头按钮后，点击Debug Configurations选项，弹出debug配置界面。如下图所示</p>
+<blockquote>
+<div><p><img alt="pic13" src="https://s3.ax1x.com/2021/03/09/63rqPJ.png" /></p>
+</div></blockquote>
+<p>3 在界面左侧，选择GDB SEGGER J-Link Debugging下的Jlink_bl_mcu_sdk选项卡
+在Main界面下，通过Browse选择需要debug的elf文件。
+如下图所示</p>
+<blockquote>
+<div><p><img alt="pic99" src="https://s3.ax1x.com/2021/03/15/6rpBkV.md.png" /></p>
+</div></blockquote>
+<p>4 配置完成后点击Apply然后点击Debug选项开始仿真，代码会全速运行直到运行到main函数首地址，出现如下图所示的页面，用户可以通过单步调试指令进行硬件仿真</p>
+<blockquote>
+<div><p><img alt="pic20" src="https://s3.ax1x.com/2021/03/15/6Dy3TS.md.png" /></p>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="bl_mcu_sdk_overview.html" class="btn btn-neutral float-left" title="bl_mcu_sdk概览" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, BouffaloLab MCU Team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
